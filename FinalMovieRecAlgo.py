@@ -18,11 +18,11 @@ movies = lines.map(lambda x: (int(x.split()[1]), 1))
 movieCounts = movies.reduceByKey(lambda x, y: x + y)
 
 flipped = movieCounts.map( lambda (x, y) : (y, x))
-sortedMovies = flipped.sortByKey()
+sortedMovies = flipped.sortByKey(ascending = False)
 
 sortedMoviesWithNames = sortedMovies.map(lambda (count, movie) : (nameDict.value[movie], count))
 
-results = sortedMoviesWithNames.collect()
+results = sortedMoviesWithNames.take(10)
 
 for result in results:
     print result
