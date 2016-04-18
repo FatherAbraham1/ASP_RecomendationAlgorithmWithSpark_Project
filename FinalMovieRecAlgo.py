@@ -2,8 +2,8 @@ from pyspark import SparkConf, SparkContext
 
 def loadNames():
     movieNames = {}
-    with open("ml-100k/u.ITEM") as f:
-        for line in f:
+    with open("ml-100k/u.ITEM") as movieNameRes:
+        for line in movieNameRes:
             fields = line.split('|')
             movieNames[int(fields[0])] = fields[1]
     return movieNames
